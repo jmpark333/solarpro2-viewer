@@ -1,0 +1,8 @@
+# (2025-07-11-00:00:57 by Cascade)
+[build]
+  command = "pip install -r requirements.txt && streamlit run viewer_app.py"
+  publish = "."
+[build.environment]
+  PIP_DISABLE_PIP_VERSION_CHECK = "1"
+[context.production.environment]
+  STREAMLIT_SERVER_HEADLESS = "true"
