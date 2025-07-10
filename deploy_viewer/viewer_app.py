@@ -53,9 +53,9 @@ if selected_file:
     latex_pattern = re.compile(r'(\\boxed|\\\(|\\\[|\$)')
     for chat in history:
         if chat['role'] == 'assistant':
-            speaker_html = "<span style='font-size:1.3em; font-weight:bold; line-height:1.2;'>🤖 solar-pro2:</span>"  # 2025-07-11-08:09:53 텍스트 크기 확대 by Cascade
+            speaker_html = "<img src='https://em-content.zobj.net/source/twitter/376/robot_1f916.png' width='22' style='vertical-align:middle; margin-right:5px;'> <span style='font-size:1.2em; font-weight:bold;'>solar-pro2:</span>"  # 2025-07-11-08:14:03 이미지 아이콘으로 변경 by Cascade
         else:
-            speaker_html = "<span style='font-size:1.3em; font-weight:bold; line-height:1.2;'>🙋 사용자:</span>"
+            speaker_html = "<img src='https://em-content.zobj.net/source/twitter/376/person-raising-hand_1f64b.png' width='22' style='vertical-align:middle; margin-right:5px;'> <span style='font-size:1.2em; font-weight:bold;'>사용자:</span>"
         content = chat['content']
         # (2025-07-10-23:45:59) 최종답변(assistant 메시지 중 '최종 답변' 또는 '최종답변' 포함)은 음영 없이 출력
         if chat['role'] == 'assistant' and (('최종 답변' in content) or ('최종답변' in content)):
