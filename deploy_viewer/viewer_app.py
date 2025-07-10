@@ -3,21 +3,22 @@ import os
 import json
 import datetime
 
-# 2025-07-10-23:18:33: 대화 기록 뷰어(읽기 전용) 앱 생성 (by Cascade)
+# 2025-07-11-07:39:06: 실행 경로 문제 해결 - 항상 deploy_viewer 폴더 기준으로 파일 접근 (by Cascade)
+
+CHAT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 st.set_page_config(page_title="solar-pro2 Chat Viewer", page_icon="☀️")
 st.title("☀️ solar-pro2 채팅 기록 뷰어")
 
 # 채팅 파일 리스트
-
 def list_chat_history_files():
-    files = [f for f in os.listdir('.') if f.startswith('chat_history_') and f.endswith('.json')]
+    files = [f for f in os.listdir(CHAT_DIR) if f.startswith('chat_history_') and f.endswith('.json')]
     files.sort(reverse=True)
     return files
 
 def get_chat_title(file):
     try:
-        with open(file, 'r', encoding='utf-8') as f:
+        with open(os.path.join(CHAT_DIR, file), 'r', encoding='utf-8') as f:
             history = json.load(f)
         for chat in history:
             if chat.get('role') == 'user' and chat.get('content'):
@@ -36,7 +37,6 @@ def extract_date_from_filename(filename):
 sidebar_files = list_chat_history_files()
 
 # 사이드바: 날짜별 그룹핑 + 제목 리스트
-last_date = None
 selected_file = st.sidebar.radio(
     '채팅 기록 목록',
     sidebar_files,
@@ -47,7 +47,7 @@ selected_file = st.sidebar.radio(
 # 본문: 선택된 채팅 전체 내용 출력
 if selected_file:
     st.markdown(f"### 🗂️ {extract_date_from_filename(selected_file)} | {get_chat_title(selected_file)}")
-    with open(selected_file, 'r', encoding='utf-8') as f:
+    with open(os.path.join(CHAT_DIR, selected_file), 'r', encoding='utf-8') as f:
         history = json.load(f)
     import re
     latex_pattern = re.compile(r'(\\boxed|\\\(|\\\[|\$)')
@@ -70,6 +70,6 @@ if selected_file:
 else:
     st.info('저장된 채팅 기록이 없습니다.')
 
-st.caption('2025-07-10-23:18:33 solar-pro2 대화 뷰어 (읽기 전용) by Cascade')
+st.caption('2025-07-11-07:39:06 solar-pro2 대화 뷰어 (실행 경로 고정, 읽기 전용) by Cascade')
 
-# (2025-07-10-23:18:33) 주요 변경: 입력/저장/삭제/모델 API 완전 제거, 읽기 전용 뷰어 구현
+# (2025-07-11-07:39:06) 주요 변경: 실행 경로 고정, 입력/저장/삭제/모델 API 완전 제거, 읽기 전용 뷰어 구현
