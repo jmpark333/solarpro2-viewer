@@ -57,16 +57,16 @@ if selected_file:
         # (2025-07-10-23:45:59) 최종답변(assistant 메시지 중 '최종 답변' 또는 '최종답변' 포함)은 음영 없이 출력
         if chat['role'] == 'assistant' and (('최종 답변' in content) or ('최종답변' in content)):
             st.markdown(
-                f"<span style='font-size:1.4em; font-weight:bold;'>🤖 solar-pro2:</span>  {content}",
+                f"<span style='font-size:1.1em; font-weight:bold;'>🤖 solar-pro2:</span>  {content}  <!-- 2025-07-11-07:50:29 폰트 크기 조정 by Cascade -->",
                 unsafe_allow_html=True
             )
         elif chat['role'] == 'assistant':
             st.markdown(
-                f"<div style='background-color:#f3f6fa; border-radius:8px; padding:0.7em 1em; margin-bottom:0.7em;'><span style='font-size:1.4em; font-weight:bold;'>{speaker}</span><br><span style='font-size:1.15em'>{content}</span></div>",
+                f"<div style='background-color:#f3f6fa; border-radius:8px; padding:0.7em 1em; margin-bottom:0.7em;'><span style='font-size:1.1em; font-weight:bold;'>{speaker}</span><br><span style='font-size:1.0em'>{content}</span>  <!-- 2025-07-11-07:50:29 폰트 크기 조정 by Cascade --></div>",
                 unsafe_allow_html=True
             )
         else:
-            st.markdown(f"<span style='font-size:1.4em; font-weight:bold;'>{speaker}</span> <span style='font-size:1.15em'>{content}</span>", unsafe_allow_html=True)
+            st.markdown(f"<span style='font-size:1.1em; font-weight:bold;'>{speaker}</span> <span style='font-size:1.0em'>{content}</span>  <!-- 2025-07-11-07:50:29 폰트 크기 조정 by Cascade -->", unsafe_allow_html=True)
 else:
     st.info('저장된 채팅 기록이 없습니다.')
 
