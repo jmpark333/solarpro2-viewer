@@ -54,11 +54,11 @@ categorized_files = {
         "chat_history_2025-07-10-224815.json", # 버스 목적지
         "chat_history_2025-07-10-224919.json", # 살인자 수수께끼
         "chat_history_2025-07-10-225407.json", # 구슬 위치
-        "chat_history_2025-07-10-225903.json", # 성은이 망극
-        "chat_history_2025-07-10-230427.json", # '썸' 문화 설명
     ],
     "**다국어 테스트**": [
         "chat_history_2025-07-11-104703.json", # 영어→일본어→한국어 번역
+        "chat_history_2025-07-10-230427.json", # '썸' 문화 설명
+        "chat_history_2025-07-10-225903.json", # 성은이 망극
     ]
 }
 
