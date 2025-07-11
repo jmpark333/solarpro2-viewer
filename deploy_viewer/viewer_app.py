@@ -34,15 +34,48 @@ def extract_date_from_filename(filename):
     except:
         return ''
 
-sidebar_files = list_chat_history_files()
+# 2025-07-11-14:37:26: 사이드바 카테고리 분류 기능 추가 by Cascade
+st.sidebar.title("채팅 기록 목록")
 
-# 사이드바: 날짜별 그룹핑 + 제목 리스트
-selected_file = st.sidebar.radio(
-    '채팅 기록 목록',
-    sidebar_files,
-    format_func=lambda x: f"{extract_date_from_filename(x)} | {get_chat_title(x)}" if x else '',
-    index=0 if sidebar_files else None
-)
+# 카테고리별 파일 정의
+categorized_files = {
+    "**코딩 테스트**": [
+        "chat_history_2025-07-11-092129.json", # Caesar's Cipher
+        "chat_history_2025-07-11-085221.json", # Message from Space
+        "chat_history_2025-07-10-231141.json", # Longest Alternating Substring
+    ],
+    "**수학 테스트**": [
+        "chat_history_2025-07-11-103500.json", # 등차수열
+        "chat_history_2025-07-11-093412.json", # 연립방정식
+        "chat_history_2025-07-10-225559.json", # 복소수 극한
+    ],
+    "**추론 테스트**": [
+        "chat_history_2025-07-10.json",       # 수학경시대회 등수
+        "chat_history_2025-07-10-224815.json", # 버스 목적지
+        "chat_history_2025-07-10-224919.json", # 살인자 수수께끼
+        "chat_history_2025-07-10-225407.json", # 구슬 위치
+        "chat_history_2025-07-10-225903.json", # 성은이 망극
+        "chat_history_2025-07-10-230427.json", # '썸' 문화 설명
+    ],
+    "**다국어 테스트**": [
+        "chat_history_2025-07-11-104703.json", # 영어→일본어→한국어 번역
+    ]
+}
+
+# 세션 상태 초기화
+if 'selected_file' not in st.session_state:
+    st.session_state.selected_file = categorized_files["**코딩 테스트**"][0]
+
+# 사이드바에 카테고리별 버튼 표시
+for category, files in categorized_files.items():
+    st.sidebar.markdown(category)
+    for file in files:
+        # 각 파일의 제목을 버튼 레이블로 사용
+        button_label = get_chat_title(file)
+        if st.sidebar.button(button_label, key=file):
+            st.session_state.selected_file = file
+
+selected_file = st.session_state.selected_file
 
 # 본문: 선택된 채팅 전체 내용 출력
 if selected_file:
