@@ -8,7 +8,7 @@ import datetime
 CHAT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 st.set_page_config(page_title="solar-pro2 Chat Viewer", page_icon="☀️", layout="wide")  # (2025-07-11-07:45:42) 가로폭 wide 옵션 추가 by Cascade
-st.title("☀️ solar-pro2 채팅 기록 뷰어")
+st.title("☀️ Solar-pro2 테스트 결과 뷰어")
 
 # 채팅 파일 리스트
 def list_chat_history_files():
